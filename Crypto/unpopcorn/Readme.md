@@ -1,6 +1,6 @@
 # unpopcorn
 
-**Category:** Crypto · **Points:** 300 · **Solves:** 144 · **Author:** neonlian
+**Category:** Crypto · **Points:** 300 · **Author:** neonlian
 
 ← [Back to all challenges](../../README.md)
 
