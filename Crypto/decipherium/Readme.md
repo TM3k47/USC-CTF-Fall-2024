@@ -1,6 +1,6 @@
 # decipherium
 
-**Category:** Crypto · **Points:** 300 · **Solves:** 215 · **Author:** neonlian
+**Category:** Crypto · **Points:** 300 · **Author:** neonlian
 
 ← [Back to all challenges](../../README.md)
 
