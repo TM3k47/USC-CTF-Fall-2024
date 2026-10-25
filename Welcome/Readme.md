@@ -1,6 +1,6 @@
 # welcome
 
-**Category:** Welcome · **Points:** 10 · **Solves:** 658
+**Category:** Welcome · **Points:** 10
 
 ← [Back to all challenges](../README.md)
 
