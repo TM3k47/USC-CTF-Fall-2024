@@ -1,6 +1,6 @@
 # colors
 
-**Category:** Beginner · Crypto · **Points:** 300 · **Solves:** 526 · **Author:** ldbwls
+**Category:** Beginner · Crypto · **Points:** 300 · **Author:** ldbwls
 
 ← [Back to all challenges](../../README.md)
 
