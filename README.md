@@ -4,8 +4,6 @@ Writeups for the challenges I solved at **USC CTF Fall 2024**.
 
 **Author:** Ahammad Tausif Mayeen ([Bl4ckf1sh](https://www.linkedin.com/in/ahammad-tausif-mayeen-677a55242/))
 
-> ⚠️ **Spoilers:** every flag is shown below. The competition is over and these are published for learning.
-
 ---
 
 ## Challenges
@@ -19,8 +17,6 @@ Writeups for the challenges I solved at **USC CTF Fall 2024**.
 | 5 | [decipherium](Crypto/decipherium/Readme.md) | Crypto | 300 | Element symbols → atomic numbers → hex | `CYBORG{PERI0DIC_C1PH3R_0F_3LEMENT5}` |
 | 6 | [unpopcorn](Crypto/unpopcorn/Readme.md) | Crypto | 300 | Reversing a custom encoder, key from known plaintext | `CYBORG{R1Ch_BUTT3RY_SUSTENANC3}` |
 | 7 | [think_twice](Forensics/think_twice/Readme.md) | Forensics | 300 | EXIF metadata, double Base64 | `Cyb0rg{McCarthy}` |
-
-Points are as shown on each challenge when I captured it. Non-beginner challenges used dynamic scoring, so their values changed during the event.
 
 **Tools used:** CyberChef, Wireshark / tshark, exiftool, curl, Python.
 
@@ -46,14 +42,6 @@ Each challenge folder has its own writeup with the description, step-by-step sol
 ```bash
 cd "Crypto/unpopcorn" && python3 solve.py
 ```
-
----
-
-## Takeaways
-
-- **Encoding isn't encryption.** `colors`, `decipherium` and `think_twice` are all just layers of reversible encoding. The skill is recognising each layer from its output.
-- **"Hidden" isn't protected.** `robots.txt` (iRobots), image metadata (think_twice) and ping payloads (weirdtraffic) are all readable by anyone who looks.
-- **A custom cipher fails to known plaintext.** In `unpopcorn`, knowing that the flag starts with `C` was enough to recover the secret key.
 
 ---
 
