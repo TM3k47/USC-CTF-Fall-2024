@@ -1,37 +1,30 @@
-from sympy import mod_inverse
+#!/usr/bin/env python3
+"""USC CTF Fall 2024 - Crypto - unpopcorn
 
-m = 57983
+Reverses encoder.py step by step:
+    pop    : x -> ord(c) ^ 42
+    butter : x -> x * p mod m        (p is secret)
+    churn  : x -> x << 3, list rotated left by 16, written as hex
 
-# Encrypted message in hexadecimal format
-encrypted_message = ["3FB60", "4F510", "42930", "31058", "DEA8", "4A818", "DEA8", "1AA88", "65AE0", "1C590",
-                     "17898", "1C590", "29170", "3FB60", "55D10", "29170", "42930", "6A7D8", "4C320", "4F510",
-                     "5FC0", "193A0", "4F510", "2E288", "29170", "643F8", "31058", "6A7D8", "4A818", "1AA88", "1AA88"]
+The secret p is recovered from known plaintext: every flag starts with "C".
+Run from this folder: python3 solve.py
+"""
+m = 57983  # = 23 * 2521
 
-# Convert hex values to integers
-encrypted_message = [int(x, 16) for x in encrypted_message]
+with open("message.txt") as f:
+    out = [int(h, 16) for h in f.read().split()]
 
-# Step 1: Undo the churn rotation (rotate the first 16 elements to the back)
-reversed_churn = encrypted_message[16:] + encrypted_message[:16]
+# Undo churn. The encoder wrote l[16:] + l[:16], so with n values the
+# first n-16 outputs came from the end of l: l = out[-16:] + out[:-16]
+l = out[-16:] + out[:-16]
+butter = [x >> 3 for x in l]
 
-# Step 2: Reverse the bitwise left shift (shift right by 3 bits)
-shifted_message = [x >> 3 for x in reversed_churn]
+# Undo butter with known plaintext: butter[0] = (ord('C') ^ 42) * p mod m
+known = ord("C") ^ 42
+p = butter[0] * pow(known, -1, m) % m
+p_inv = pow(p, -1, m)
+print("Recovered p =", p)
 
-# Brute-force possible values of p and try to decrypt
-for p in range(1, m):
-    try:
-        p_inv = mod_inverse(p, m)
-        buttered_message = [(x * p_inv) % m for x in shifted_message]
-        
-        # Step 3: Reverse the XOR operation with 42
-        decrypted_message = "".join(chr(x ^ 42) for x in buttered_message)
-        
-        # Check if the message seems readable
-        if all(32 <= ord(c) < 127 for c in decrypted_message):  # Check for ASCII printable range
-            print(f"Possible decryption with p={p}:")
-            print(decrypted_message)
-            break
-
-    except ValueError:
-        # Skip if p has no modular inverse (i.e., gcd(p, m) != 1)
-        continue
-
+# Undo pop
+flag = "".join(chr((x * p_inv % m) ^ 42) for x in butter)
+print("Flag:", flag)
