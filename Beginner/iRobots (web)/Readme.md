@@ -1,6 +1,6 @@
 # iRobots
 
-**Category:** Beginner · Web · **Points:** 300 · **Solves:** 523 · **Author:** iblack21
+**Category:** Beginner · Web · **Points:** 300 · **Author:** iblack21
 
 ← [Back to all challenges](../../README.md)
 
